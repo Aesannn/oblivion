@@ -16,19 +16,34 @@ OBLIVION is a production-grade Financial Intelligence and Tactical Command OS. I
 - **Frontend**: Next.js 16, Tailwind CSS 4, Framer Motion, Recharts, Socket.io-client.
 - **Backend**: Node.js, Socket.io, Google Gemini API.
 
-## Setup Instructions
+## 📦 Installation
 
-### 1. Backend Setup
-1. Navigate to the `server/` directory.
-2. Install dependencies: `npm install`
-3. Create a `.env` file and add your `GEMINI_API_KEY`.
-4. Start the server: `npm run dev`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Aesannn/oblivion.git
+   ```
 
-### 2. Frontend Setup
-1. Navigate to the `client/` directory.
-2. Install dependencies: `npm install`
-3. Start the application: `npm run dev`
-4. Open `http://localhost:3000` in your browser.
+2. Install dependencies:
+   ```bash
+   # Install for both client and server
+   cd client && npm install
+   cd ../server && npm install
+   ```
 
-## Deployment
-This project is optimized for deployment on **Vercel** (client) and any Node.js environment (server).
+3. Run the development server:
+   ```bash
+   # From the root directory
+   npm run dev
+   ```
+
+## 🌐 Deployment
+
+Hosted on **Vercel**. Connect your GitHub repository for automatic deployments.
+
+---
+
+# Created by [Aesannn](https://github.com/Aesannn)
+
+# oblivion
+
+Immersive. Tactical. Premium. A next-gen financial intelligence OS experience.
