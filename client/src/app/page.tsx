@@ -242,12 +242,14 @@ export default function Dashboard() {
                       <TrendingUp className="w-4 h-4 text-primary" />
                       <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">Risk Vector</span>
                     </div>
-                    <div className="flex-1 min-h-0">
-                      <ResponsiveContainer width="100%" height="100%">
-                          <AreaChart data={riskHistory}>
-                            <Area type="monotone" dataKey="risk" stroke="var(--primary)" fillOpacity={0.1} fill="var(--primary)" isAnimationActive={false} />
-                          </AreaChart>
-                      </ResponsiveContainer>
+                    <div className="flex-1 min-h-0 w-full h-full">
+                      {isMounted && (
+                        <ResponsiveContainer width="100%" height="100%" debounce={50}>
+                            <AreaChart data={riskHistory}>
+                              <Area type="monotone" dataKey="risk" stroke="var(--primary)" fillOpacity={0.1} fill="var(--primary)" isAnimationActive={false} />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                      )}
                     </div>
                     <div className="mt-3 pt-3 border-t border-white/5 flex justify-between px-1">
                        <div className="flex flex-col"><span className="text-[7px] text-primary/40 uppercase">Peak Vector</span><span className="text-[10px] font-mono text-white/80">{Math.max(...riskHistory.map(h => h.risk || 0), 0).toFixed(1)}%</span></div>
@@ -464,13 +466,18 @@ function LoadingScreen({ isMounted }: { isMounted: boolean }) {
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              transition={{ duration: 3, ease: "easeInOut" }}
+              transition={{ duration: 2.5, ease: "circOut" }}
               className="h-full bg-primary shadow-[0_0_10px_rgba(88,166,255,0.8)]"
             />
           </div>
           <div className="flex justify-between w-64 text-[8px] font-mono text-primary/40 uppercase tracking-widest pt-1">
             <span>Auth_Sequence</span>
-            <span>99.9%</span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              COMPLETE
+            </motion.span>
           </div>
         </div>
 
