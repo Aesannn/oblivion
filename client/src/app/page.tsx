@@ -233,12 +233,12 @@ export default function Dashboard() {
       setTimeout(() => {
         const mockReport = {
           summary: `[SIMULATED_INTEL] Tactical assessment complete. Analyzed current data stream for prompt: "${query}". Neural nodes report stable monitoring with minor fluctuations in retail and crypto sectors.`,
-          directives: [
-            "MAINTAIN active geolocation monitoring for high-value shifts.",
-            "CALIBRATE risk vectors for potential surge events.",
-            "MONITOR anomaly clusters for persistent risk patterns."
+          insights: [
+            "Active geolocation monitoring recommended for high-value shifts.",
+            "Risk vectors show potential surge events in the next cycle.",
+            "Anomaly clusters identified with persistent risk patterns."
           ],
-          risk_assessment: systemState.avg_risk > 60 ? "HIGH_ALERT" : "NOMINAL",
+          recommendation: systemState.avg_risk > 60 ? "HIGH_ALERT: INITIATE_RESTRICTION" : "STATUS_NOMINAL: CONTINUE_MONITORING",
           timestamp: new Date().toISOString()
         };
         setAiAnalysis(mockReport);
@@ -411,10 +411,23 @@ export default function Dashboard() {
                   </motion.div>
                 )}
               </AnimatePresence>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-primary/20 rounded flex items-center justify-center shrink-0 border border-primary/30"><Cpu className={`w-5 h-5 text-primary ${isAnalyzing ? 'animate-spin' : ''}`} /></div>
-                <div className="flex-1 relative"><input value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAnalyze()} type="text" placeholder="Query OBLIVION Intel Engine..." className="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-xs font-mono outline-none focus:border-primary/50 transition-all" /></div>
-              </div>
+              <form 
+                onSubmit={(e) => { e.preventDefault(); handleAnalyze(); }}
+                className="flex items-center gap-4 w-full"
+              >
+                <div className="w-10 h-10 bg-primary/20 rounded flex items-center justify-center shrink-0 border border-primary/30">
+                  <Cpu className={`w-5 h-5 text-primary ${isAnalyzing ? 'animate-spin' : ''}`} />
+                </div>
+                <div className="flex-1 relative">
+                  <input 
+                    value={query} 
+                    onChange={(e) => setQuery(e.target.value)} 
+                    type="text" 
+                    placeholder="Query OBLIVION Intel Engine..." 
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-xs font-mono outline-none focus:border-primary/50 transition-all" 
+                  />
+                </div>
+              </form>
             </footer>
 
             {/* FIXED ALERT OVERLAY: Smooth Top-Down Flow with popLayout to prevent gaps */}
