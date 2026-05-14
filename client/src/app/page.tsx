@@ -28,17 +28,18 @@ interface Transaction {
   transaction_id: string;
   amount: number;
   merchant_id: string;
-  user_id: string;
+  user_id?: string;
   geo_location: {
     lat: number;
     lng: number;
     country: string;
   };
   category: string;
-  timestamp: string;
+  timestamp?: string;
   risk_score?: number;
   risk_level?: 'low' | 'medium' | 'high' | 'critical';
   explanation?: string;
+  status?: string;
 }
 
 interface Incident {
