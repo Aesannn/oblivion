@@ -94,6 +94,27 @@ export default function Dashboard() {
       txBuffer.push(tx);
     });
 
+    // --- TACTICAL SIMULATION FALLBACK ---
+    const simulationInterval = setInterval(() => {
+      if (!s.connected) {
+        const mockTx: Transaction = {
+          transaction_id: Math.random().toString(16).slice(2, 10),
+          amount: Math.floor(Math.random() * 8000) + 100,
+          category: ['retail', 'travel', 'electronics', 'crypto', 'food', 'gaming', 'luxury'][Math.floor(Math.random() * 7)],
+          merchant_id: `MOCK_VENDOR_${Math.floor(Math.random() * 999)}`,
+          geo_location: {
+            lat: (Math.random() * 120) - 40,
+            lng: (Math.random() * 360) - 180,
+            country: ['US', 'GB', 'JP', 'DE', 'FR', 'SG', 'AE', 'CH', 'BR', 'AU'][Math.floor(Math.random() * 10)]
+          },
+          risk_score: Math.random() * 100,
+          risk_level: Math.random() > 0.85 ? 'high' : 'low',
+          status: 'processed'
+        };
+        txBuffer.push(mockTx);
+      }
+    }, 1500);
+
     const interval = setInterval(() => {
       if (txBuffer.length === 0) return;
       const newBatch = [...txBuffer].reverse();
@@ -189,6 +210,7 @@ export default function Dashboard() {
     return () => {
       s.disconnect();
       clearInterval(interval);
+      clearInterval(simulationInterval);
     };
   }, [isLoading]);
 
