@@ -116,7 +116,7 @@ export default function Dashboard() {
         };
         txBuffer.push(mockTx);
       }
-    }, 31); // Calibrated to ~32 TPS (1000/31)
+    }, 85); // Optimized for mobile: 10-12 TPS (1000/85)
 
     const interval = setInterval(() => {
       if (txBuffer.length === 0) return;
