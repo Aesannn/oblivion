@@ -116,7 +116,7 @@ export default function Dashboard() {
         };
         txBuffer.push(mockTx);
       }
-    }, 85); // Optimized for mobile: 10-12 TPS (1000/85)
+    }, 110); // Optimized for mobile: 8-10 TPS (1000/110)
 
     const interval = setInterval(() => {
       if (txBuffer.length === 0) return;
@@ -218,13 +218,34 @@ export default function Dashboard() {
   }, [isLoading]);
 
   const handleAnalyze = () => {
-    if (!query || !socket) return;
+    if (!query) return;
     setIsAnalyzing(true);
-    socket.emit('analyze', { query, context: transactions.slice(0, 100) });
-    socket.once('analysis_report', (report) => {
-      setAiAnalysis(report);
-      setIsAnalyzing(false);
-    });
+    
+    if (socket && isConnected) {
+      socket.emit('analyze', { query, context: transactions.slice(0, 10) });
+      socket.once('analysis_report', (report) => {
+        setAiAnalysis(report);
+        setIsAnalyzing(false);
+      });
+    } else {
+      // --- LOCAL TACTICAL INTELLIGENCE FALLBACK ---
+      // Ensures the chatbot works on mobile/public networks even without a deployed backend
+      setTimeout(() => {
+        const mockReport = {
+          summary: `[SIMULATED_INTEL] Tactical assessment complete. Analyzed current data stream for prompt: "${query}". Neural nodes report stable monitoring with minor fluctuations in retail and crypto sectors.`,
+          directives: [
+            "MAINTAIN active geolocation monitoring for high-value shifts.",
+            "CALIBRATE risk vectors for potential surge events.",
+            "MONITOR anomaly clusters for persistent risk patterns."
+          ],
+          risk_assessment: systemState.avg_risk > 60 ? "HIGH_ALERT" : "NOMINAL",
+          timestamp: new Date().toISOString()
+        };
+        setAiAnalysis(mockReport);
+        setIsAnalyzing(false);
+      }, 1500);
+    }
+    setQuery('');
   };
 
   return (
