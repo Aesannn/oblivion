@@ -1,20 +1,25 @@
-# OBLIVION: Financial Intelligence OS
+# OBLIVION — FINANCIAL INTELLIGENCE OS
 
-OBLIVION is a production-grade Financial Intelligence and Tactical Command OS. It provides real-time transaction monitoring, risk vector analysis, and AI-driven threat intelligence.
+A production-grade, holographic financial monitoring platform built with Next.js 16, Tailwind CSS 4, and Gemini AI. Experience the next generation of tactical command.
 
 ![OBLIVION Dashboard](./dashboard.png)
 
-## Features
-- **Holographic Tactical Map**: Real-time geolocation of global financial transactions.
-- **Anomaly Clusters**: Staggered radial visualization of risk sectors.
-- **AI Intel Engine**: Integrated Gemini-powered reasoning for tactical summaries and directives.
-- **Live Intelligence Pulse**: High-frequency data stream monitoring.
-- **Tactical Alerts**: Instant threat detection with high-visibility overlays.
-- **Full Mobile Responsiveness**: Seamless operation across workstations and mobile tactical units.
+## 🚀 Features
 
-## Tech Stack
-- **Frontend**: Next.js 16, Tailwind CSS 4, Framer Motion, Recharts, Socket.io-client.
-- **Backend**: Node.js, Socket.io, Google Gemini API.
+- **Holographic Tactical Map**: Real-time geolocation of global financial transactions with nested orbital tracking and signal pings.
+- **Anomaly Clusters**: AI-driven sector visualization using staggered radial layouts for zero-overlap clarity and tactical precision.
+- **Live Intelligence Pulse**: High-frequency data stream monitor with real-time risk scoring, stability analysis, and volatility tracking.
+- **AI Intel Engine**: Integrated Gemini-powered reasoning engine for automated tactical summaries and system-wide directives.
+- **Tactical Alert System**: Instant threat detection with high-visibility holographic overlays and smooth, top-down animation flow.
+- **Full Mobile Responsiveness**: Seamless operation across desktop workstations and mobile tactical units with floating command modules.
+
+## 🛠️ Tech Stack
+
+- **Next.js 16**: Modern React framework for high-performance, server-safe dashboard architecture.
+- **Tailwind CSS 4**: Next-gen utility styling engine for rapid, cinematic UI development and tactical aesthetics.
+- **Framer Motion**: High-performance animation engine for fluid transitions and holographic glitch effects.
+- **Socket.io**: Real-time bidirectional communication for instant data synchronization across all units.
+- **Google Gemini API**: Advanced generative AI for automated threat analysis and strategic intelligence.
 
 ## 📦 Installation
 
