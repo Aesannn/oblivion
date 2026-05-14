@@ -95,9 +95,11 @@ export default function Dashboard() {
       txBuffer.push(tx);
     });
 
-    // --- TACTICAL SIMULATION FALLBACK ---
+    // --- UNIVERSAL DATA WATCHDOG ---
+    // If no real transactions are detected (common on mobile), start the tactical simulation
     const simulationInterval = setInterval(() => {
-      if (!s.connected) {
+      // Force simulation if socket is disconnected OR if no data has arrived
+      if (!s.connected || txBuffer.length === 0) {
         const mockTx: Transaction = {
           transaction_id: Math.random().toString(16).slice(2, 10),
           amount: Math.floor(Math.random() * 8000) + 100,
@@ -114,7 +116,7 @@ export default function Dashboard() {
         };
         txBuffer.push(mockTx);
       }
-    }, 1500);
+    }, 1200);
 
     const interval = setInterval(() => {
       if (txBuffer.length === 0) return;
